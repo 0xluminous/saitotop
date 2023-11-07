@@ -1,0 +1,23 @@
+{
+  "name": "saitotop",
+  "version": "0.0.1",
+  "description": "Dashboard for Saito Node",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "saito",
+    "top"
+  ],
+  "author": "0xluminous",
+  "license": "MIT",
+  "devDependencies": {
+    "esm": "^3.2.25"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
+    "tail": "^2.2.6"
+  }
+}
