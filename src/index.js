@@ -7,7 +7,7 @@ async function main() {
     const ui = new UI();
     const stats = new Stats(process.argv[2]);
     stats.onstat = (stat) => {
-        console.log(stat);
+        ui.setData(stats.events);
     }
     stats.start();
 

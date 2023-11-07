@@ -20,7 +20,7 @@ export default class Stats {
             this.tail = null;
         }
 
-        this.tail = new Tail(this.stats_file, { fromBeginning: true });
+        this.tail = new Tail(this.stats_file, { fromBeginning: false });
         this.tail.on("line", this.process.bind(this));
     }
 

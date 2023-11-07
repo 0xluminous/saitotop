@@ -26,33 +26,11 @@ export default class UI {
             padding: { top: 1, left: 1, right: 0, bottom: 0 },
             bottom: "0",
             left: "0",
-            content: 'Saito Top',
         });
 
 
         this.screen.append(this.events_table);
         this.screen.append(this.status_bar);
-
-        /*
-        this.events_table1 = blessed.listtable({
-            parent: this.box,
-            align: 'left',
-            left: '50%',
-            width: '49%',
-            height: '50%',
-            // align: 'left',
-            // width: '50%',
-            // height: '50%',
-        });
-        */
-
-        /*
-        */
-
-        //this.screen.append(this.box);
-        // this.screen.append(this.status_bar)
-        // this.box.append(this.events_table);
-        // this.box.append(this.events_table);
 
         this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
             return process.exit(0);
@@ -60,10 +38,24 @@ export default class UI {
 
         // this.events_table.focus();
 
-        this.tick();
+        // this.tick();
     }
 
     tick() {
+        this.status_bar.setContent(`Last updated ${new Date().toISOString()}`);
+        this.screen.render();
+    }
+
+    setData(data) {
+        const rows = [["Event", "Properties"]];
+        const events = Object.keys(data);
+        events.sort();
+        for (const event of events) {
+            rows.push([event, JSON.stringify(data[event])]);
+        }
+        this.events_table.setData(rows);
+
+        /*
         this.events_table.setData([
             ['Column 10', 'Column 20', 'Column 30'],
             ['Row 1 Col 1', 'Row 1 Col 2', 'Row 1 Col 3'],
@@ -83,19 +75,11 @@ export default class UI {
             ['Row 1 Col 1', 'Row 1 Col 2', 'Row 1 Col 3'],
             // ... more rows
         ]);
-
-        /*
-        this.events_table1.setData([
-            ['Column 100', 'Column 20', 'Column 30'],
-            ['Row 10 Col 10', 'Row 1 Col 2', 'Row 1 Col 3'],
-        ]);
         */
 
-        this.screen.render();
+        this.tick();
     }
 }
-
-const ui = new UI();
 
 /*
 setInterval(function () {
