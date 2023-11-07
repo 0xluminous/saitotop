@@ -1,21 +1,22 @@
 require("dotenv").config();
 import SaitoTop from "./saitotop"
-// const Stats = require("./stats").default;
-// const UI = require("./ui").default;
+import UI from "./ui"
 
 async function main() {
 
-    SaitoTop(process.argv[2], (saito) => {
-        console.log(Object.keys(saito.stats));
-    });
-
+    const ui = new UI();
     /*
-    // const ui = new UI();
-    const stats_file = process.argv[2];
-        ui.setData(stats);
+    SaitoTop(process.argv[2], (saito) => {
+        // console.log(Object.keys(saito.stats));
+        ui.setData(saito.stats);
     });
     */
 }
+
+process.on("uncaughtException", (err) => {
+    console.log(err);
+    process.exit(-1);
+});
 
 main();
 

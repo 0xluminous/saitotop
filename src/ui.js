@@ -1,9 +1,59 @@
-const log = require("debug")("saitotop:ui");
+// const log = require("debug")("saitotop:ui");
 const blessed = require("blessed");
 // const contrib = require("blessed-contrib");
-const timeago = require("./timeago").default;
-const invert = require("invert-color");
+// const timeago = require("./timeago").default;
+// const invert = require("invert-color");
+import LoadingComponent from "./components/loading";
 
+export default class UI {
+    constructor() {
+        this.saito = null;
+        this.components = [];
+        this.setup();
+    }
+
+    setup() {
+        this.screen = blessed.screen({
+            // handleUncaughtExceptions: true,
+            // log: "debug",
+            // dump: true,
+            debug: true,
+        });
+
+        this.components = [
+            new LoadingComponent(),
+        ];
+
+        for (const component of this.components) {
+            this.screen.append(component.component);
+        }
+
+        this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
+            return process.exit(0);
+        });
+
+        this.runloop();
+    }
+
+    runloop() {
+        setInterval(() => {
+            this.render();
+        }, 1000);
+
+        this.render();
+    }
+
+    render() {
+        for (const component of this.components) {
+            component.render(this.saito);
+        }
+
+        this.screen.render();
+        // this.screen1.render();
+    }
+}
+
+/*
 export default class UI {
     constructor() {
         log("Initializing UI");
@@ -111,3 +161,4 @@ export default class UI {
         this.events_table.setData(rows);
     }
 }
+*/
