@@ -1,0 +1,26 @@
+incoming vs outgoing messages - blocked_created vs fetched verification
+(processed blocks, msgs, txs)
+
+blockchain::state                  {"utxo_size":"63","block_count":"43","longest_chain_len":"43"}
+consensus::blocks_created          {"total":"0","current_rate":"0.00","max_rate":"0.00","min_rate":"0.00"}
+consensus::blocks_fetched          {"total":"47","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+consensus::queue                   {"capacity":"10000 / 10000"}
+consensus::received_gts            {"total":"13","current_rate":"0.00","max_rate":"1.00","min_rate":"0.00"}
+consensus::received_tx             {"total":"7","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+mempool:state                      {"blocks_queue":"3","transactions":"4"}
+mining::golden_tickets             {"total":"10","current
+difficulty":"21","miner_active":"false","current
+target":"\"a17c6807fc8e868e695e4939c9f6d484603cff7773e5a8e293d166805b64feb4\"
+network::incoming_msgs             {"total":"7022","current_rate":"0.29","max_rate":"6.89","min_rate":"0.00"}
+network::outgoing_msgs             {"total":"46","current_rate":"0.00","max_rate":"0.00","min_rate":"0.00"}
+network::queue                     {"capacity":"10000 / 10000"}
+routing::incoming_msgs             {"total":"6946","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+routing::received_blocks           {"total":"0","current_rate":"0.00","max_rate":"0.00","min_rate":"0.00"}
+routing::received_txs              {"total":"7","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+routing:sync_state                 {"block_ceiling":"73"}
+verification_0::invalid_txs        {"total":"0","current_rate":"0.00","max_rate":"0.00","min_rate":"0.00"}
+verification_0::processed_blocks   {"total":"47","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+verification_0::processed_msgs     {"total":"61","current_rate":"0.00","max_rate":"4.49","min_rate":"0.00"}
+verification_0::processed_txs      {"total":"7","current_rate":"0.00","max_rate":"1.50","min_rate":"0.00"}
+verification_0::queue              {"capacity":"1000000 / 1000000"}
+wallet::state                      {"total_slips":"0","unspent_slips":"0","current_balance":"0"}

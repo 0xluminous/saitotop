@@ -8,8 +8,12 @@ export default class UI {
     constructor() {
         log("Initializing UI");
         this.data = {};
-        this.interval = null;
+
         this.setup();
+
+        this.interval = setInterval(() => {
+            this.tick();
+        }, 1000);
     }
 
     setup() {
@@ -88,13 +92,6 @@ export default class UI {
         this.updateEventTableData();
         this.screen.render();
     }
-
-    start() {
-        this.interval = setInterval(() => {
-            this.tick();
-        }, 1000);
-    }
-
     setData(data) {
         this.data = data;
     }

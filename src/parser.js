@@ -2,7 +2,9 @@ export default class Parser {
     static parse(line) {
         const parsed = { params: {} };
 
-        line = line.replace("--- stats ------ ", ""); // saito bug
+        // saito bugs
+        line = line.replace("--- stats ------ ", "");
+        line = line.replace("mempool:state", "mempool::state");
 
         const [event, rest] = line.split(/\s+-\s+/);
         parsed.event = event;
