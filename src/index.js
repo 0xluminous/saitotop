@@ -1,5 +1,4 @@
 require("dotenv").config();
-const log = require("debug")("saitotop:index");
 const Stats = require("./stats").default;
 const UI = require("./ui").default;
 
