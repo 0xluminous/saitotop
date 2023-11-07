@@ -17,6 +17,8 @@ export default function Stats(stats_file, callback) {
     });
 }
 
+// todo: errors are incredibly hard to debug...at least add logging or fix exceptions
+// todo: bug where key names get messed up...try to detect and fix
 // todo: store date for each event
 // todo: parse event params even further (into type)
 // todo: parse _0 _1 _2 events into an array

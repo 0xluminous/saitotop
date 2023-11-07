@@ -7,6 +7,7 @@ async function main() {
 
     const stats_file = process.argv[2];
     Stats(stats_file, (stats) => {
+        // console.log(stats);
         ui.setData(stats);
     });
 

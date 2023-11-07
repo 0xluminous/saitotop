@@ -10,7 +10,11 @@ export default class Parser {
         const params = rest.split(/\s*\,\s*/);
         for (const param of params) {
             const [key, value] = param.split(/\s*\:\s*/);
-            parsed.params[key] = value;
+            try {
+                parsed.params[key] = JSON.parse(value);
+            } catch (e) {
+                parsed.params[key] = value;
+            }
             parsed.date = new Date();
         }
 
