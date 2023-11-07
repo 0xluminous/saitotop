@@ -11,6 +11,7 @@ export default class Parser {
         for (const param of params) {
             const [key, value] = param.split(/\s*\:\s*/);
             parsed.params[key] = value;
+            parsed.date = new Date();
         }
 
         return parsed;

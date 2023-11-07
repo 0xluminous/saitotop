@@ -1,11 +1,13 @@
 const log = require("debug")("saitotop:ui");
 const blessed = require("blessed");
 const contrib = require("blessed-contrib");
-
+const timeago = require("./timeago").default;
 
 export default class UI {
     constructor() {
         log("Initializing UI");
+        this.data = {};
+        this.interval = null;
         this.setup();
     }
 
@@ -36,22 +38,31 @@ export default class UI {
             return process.exit(0);
         });
 
-        // this.events_table.focus();
-
-        // this.tick();
+        this.tick();
     }
 
     tick() {
         this.status_bar.setContent(`Last updated ${new Date().toISOString()}`);
+        this.updateData();
         this.screen.render();
     }
 
+    start() {
+        this.interval = setInterval(() => {
+            this.tick();
+        }, 1000);
+    }
+
     setData(data) {
-        const rows = [["Event", "Properties"]];
-        const events = Object.keys(data);
+        this.data = data;
+    }
+
+    updateData() {
+        const rows = [["Event", "Properties", "Date"]];
+        const events = Object.keys(this.data);
         events.sort();
         for (const event of events) {
-            rows.push([event, JSON.stringify(data[event])]);
+            rows.push([event, JSON.stringify(this.data[event].params).substring(0, 50), timeago(this.data[event].date)]);
         }
         this.events_table.setData(rows);
 
@@ -77,7 +88,7 @@ export default class UI {
         ]);
         */
 
-        this.tick();
+        // this.tick();
     }
 }
 
