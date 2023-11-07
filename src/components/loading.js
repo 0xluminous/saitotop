@@ -19,6 +19,13 @@ export default class LoadingComponent {
     }
 
     render(data) {
+        if (data.active) {
+            this.component.hide();
+            return;
+        }
+
+        this.component.show();
+
         if (++this.i > 3) {
             this.i = 0;
         }

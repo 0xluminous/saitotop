@@ -13,6 +13,8 @@ export default function SaitoTop(dir, callback) {
 
         config: null,
         stats: {},
+
+        active: false,
     };
 
     saito.config_file = path.join(saito.config_dir, "config.json");
@@ -28,6 +30,8 @@ export default function SaitoTop(dir, callback) {
 
     const tail = new Tail(saito.stats_file, { fromBeginning: false });
     tail.on("line", (line) => {
+        saito.active = true;
+
         const stat = Parser.parse(line);
         saito.stats[stat.event] = stat;
         callback(saito);
