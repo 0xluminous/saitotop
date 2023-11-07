@@ -5,8 +5,11 @@ const UI = require("./ui").default;
 
 async function main() {
     const ui = new UI();
-    // const stats = new Stats(process.argv[2]);
-    // stats.start();
+    const stats = new Stats(process.argv[2]);
+    stats.onstat = (stat) => {
+        console.log(stat);
+    }
+    stats.start();
 
     /*
     const stats_file = process.argv[2];

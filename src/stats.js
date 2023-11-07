@@ -21,19 +21,21 @@ export default class Stats {
         }
 
         this.tail = new Tail(this.stats_file, { fromBeginning: true });
-        this.tail.on("line", this.processLine.bind(this));
+        this.tail.on("line", this.process.bind(this));
     }
 
-    processLine(line) {
+    process(line) {
         log("processing line");
         const parsed = Parser.parse(line);
         this.events[parsed.event] = parsed.params;
-        log(line);
-        this.tick();
+        this.onstat(parsed);
     }
 
-    tick() {
-        console.log(this.events["mining::golden_tickets"]);
-        // console.log(Object.keys(this.events));
+    onstat(stat) {
+        log(stat);
     }
 }
+
+// todo: store date for each event
+// todo: parse event params even further (into type)
+// todo: parse _0 _1 _2 events into an array
