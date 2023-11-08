@@ -1,7 +1,6 @@
 // const log = require("debug")("saitotop:ui");
 const blessed = require("blessed");
 import LoadingComponent from "./components/loading";
-import EventsTableComponent from "./components/events_table";
 import StatusbarComponent from "./components/statusbar";
 import DividerComponent from "./components/divider";
 import DebugComponent from "./components/debug";
