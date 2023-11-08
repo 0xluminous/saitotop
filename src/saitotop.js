@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const { getRandomColor } = require("./utils");
 
 const Tail = require("tail").Tail;
 

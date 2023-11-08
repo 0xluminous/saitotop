@@ -1,5 +1,5 @@
 const blessed = require("blessed");
-const timeago = require("../timeago").default;
+const { timeago } = require("../utils");
 
 export default class EventsTableComponent {
 
