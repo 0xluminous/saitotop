@@ -5,6 +5,7 @@ import EventsTableComponent from "./components/events_table";
 import StatusbarComponent from "./components/statusbar";
 import NetworkComponent from "./components/network";
 import NodeComponent from "./components/node";
+import DividerComponent from "./components/divider";
 
 export default class UI {
     constructor() {
@@ -20,10 +21,12 @@ export default class UI {
             dump: true,
         });
 
+
         this.components = [
             new LoadingComponent(),
             new NetworkComponent(),
             new NodeComponent(),
+            new DividerComponent(),
             new EventsTableComponent(),
             new StatusbarComponent(),
         ];

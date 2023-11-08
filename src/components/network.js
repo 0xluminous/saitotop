@@ -5,10 +5,10 @@ export default class NetworkComponent {
 
     constructor() {
         this.component = blessed.box({
-            top: "0%",
-            height: "15%",
-            width: "65%",
-            padding: { top: 0, left: 1, right: 1, bottom: 0 },
+            top: "0",
+            height: "190",
+            width: "75%",
+            padding: { top: 1, left: 1, right: 1, bottom: 0 },
 
             tags: true,
             content: "Initializing...",
@@ -30,6 +30,7 @@ export default class NetworkComponent {
         let content = "";
         let event = null;
 
+
         if (event = stats["blockchain::state"]) {
             const stat = event["stats"]["block_count"];
             const last_value = stat.last_value ? `${stat.last_value} ` : "";
@@ -43,16 +44,16 @@ export default class NetworkComponent {
             content += `{white-fg}{bold}TARGET:  {${color}-bg}{black-fg}  {/black-fg}{/${color}-bg} ${stat.value}{/white-fg}{/bold} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
         }
 
-        if (event = stats["mining::golden_tickets"]) {
-            const stat = event["stats"]["miner_active"];
-            const value = (stat.value ? "{white-fg}{green-bg}MINING{/green-bg}{/white-fg}" : "{white-fg}{red-bg}NOT MINING{/red-bg}{/white-fg}");
-            content += `{white-fg}{bold}MINING:  ${value}{/bold}{/white-fg}\n`;
-        }
-
         if (event = stats["mempool::state"]) {
             const transactions = event["stats"]["transactions"]["value"];
             const blocks = event["stats"]["blocks_queue"]["value"];
             content += `{white-fg}{bold}MEMPOOL: tx=${transactions} blk=${blocks}{/bold}{/white-fg}\n`;
+        }
+
+        if (event = stats["mining::golden_tickets"]) {
+            const stat = event["stats"]["miner_active"];
+            const value = (stat.value ? "{white-fg}{green-bg}MINING{/green-bg}{/white-fg}" : "{white-fg}{red-bg}NOT MINING{/red-bg}{/white-fg}");
+            content += `{white-fg}{bold}MINING:  ${value}{/bold}{/white-fg}\n`;
         }
 
         if (event = stats["wallet::state"]) {

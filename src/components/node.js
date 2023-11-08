@@ -5,11 +5,11 @@ export default class NodeComponent {
     constructor() {
         this.component = blessed.box({
             top: "0%",
-            height: "20%",
+            height: "190",
             align: "right",
-            left: "65%",
-            width: "35%",
-            padding: { top: 0, left: 1, right: 0, bottom: 0 },
+            left: "75%",
+            width: "25%",
+            padding: { top: 1, left: 1, right: 1, bottom: 0 },
             tags: true,
         });
     }

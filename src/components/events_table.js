@@ -7,12 +7,18 @@ export default class EventsTableComponent {
     constructor() {
         this.component = blessed.listtable({
             align: 'left',
-            top: "15%",
+            top: "200",
             tags: true,
             left: '0%',
             padding: { top: 0, left: 1, right: 0, bottom: 1 },
             width: '100%',
             height: '95%',
+            style: {
+                header: {
+                    fg: 'blue',
+                    bold: true,
+                },
+            }
         });
     }
 
@@ -48,7 +54,6 @@ export default class EventsTableComponent {
         const event = row.event;
         const cols = [event];
 
-        // console.log(row);
         for (const stat in row.stats) {
             if (["max_rate", "min_rate", "miner_active", "block_count", "current target", "current_balance"].indexOf(stat) !== -1) continue;
             cols.push(stat.padStart(20, " "));
@@ -56,7 +61,8 @@ export default class EventsTableComponent {
             cols.push(`{white-fg}${row.stats[stat].value}{/white-fg} {gray-fg}${last_value}${timeago(row.stats[stat].date)} ago{/gray-fg}`);
         }
 
-        // return [event, JSON.stringify(row.stats).substring(0, 50), "0s"];
+        // TODO: fill in empty cells with "-"
+
         return cols;
     }
 
