@@ -7,7 +7,7 @@ export default class StatusbarComponent {
             width: "60%",
             padding: { top: 0, left: 1, right: 1, bottom: 0 },
             valign: "bottom",
-            content: "(q) quit   (f12) debug",
+            content: "(d)debug  (q)quit",
         });
 
         this.right = blessed.box({

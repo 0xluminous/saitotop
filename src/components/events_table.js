@@ -10,6 +10,8 @@ export default class EventsTableComponent {
             top: "200",
             tags: true,
             left: '0%',
+            scrollable: true,
+            mouse: true,
             padding: { top: 0, left: 1, right: 0, bottom: 1 },
             width: '100%',
             height: '95%',

@@ -6,6 +6,7 @@ import StatusbarComponent from "./components/statusbar";
 import NetworkComponent from "./components/network";
 import NodeComponent from "./components/node";
 import DividerComponent from "./components/divider";
+import DebugComponent from "./components/debug";
 
 export default class UI {
     constructor() {
@@ -21,6 +22,7 @@ export default class UI {
             dump: true,
         });
 
+        const debug = new DebugComponent();
         this.components = [
             new LoadingComponent(),
             new NetworkComponent(),
@@ -28,6 +30,7 @@ export default class UI {
             new DividerComponent(),
             new EventsTableComponent(),
             new StatusbarComponent(),
+            debug,
         ];
 
         for (const component of this.components) {
@@ -36,6 +39,10 @@ export default class UI {
 
         this.screen.key(['escape', 'q', 'C-c'], function () {
             return process.exit(0);
+        });
+
+        this.screen.key(['d'], function () {
+            debug.toggle();
         });
 
         this.runloop();
