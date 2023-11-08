@@ -61,6 +61,14 @@ export default class EventsTableComponent {
             cols.push(`{white-fg}${row.stats[stat].value}{/white-fg} {gray-fg}${last_value}${timeago(row.stats[stat].date)} ago{/gray-fg}`);
         }
 
+        while (cols.length < 5) {
+            if (cols.length % 2 === 0) {
+                cols.push("-");
+            } else {
+                cols.push("-".padStart(20, " "));
+            }
+        }
+
         // TODO: fill in empty cells with "-"
 
         return cols;
