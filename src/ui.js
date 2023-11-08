@@ -21,7 +21,6 @@ export default class UI {
             dump: true,
         });
 
-
         this.components = [
             new LoadingComponent(),
             new NetworkComponent(),

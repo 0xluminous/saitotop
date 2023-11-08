@@ -69,8 +69,6 @@ export default class EventsTableComponent {
             }
         }
 
-        // TODO: fill in empty cells with "-"
-
         return cols;
     }
 
