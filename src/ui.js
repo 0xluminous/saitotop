@@ -1,7 +1,5 @@
 // const log = require("debug")("saitotop:ui");
 const blessed = require("blessed");
-// const contrib = require("blessed-contrib");
-// const invert = require("invert-color");
 import LoadingComponent from "./components/loading";
 import EventsTableComponent from "./components/events_table";
 import StatusbarComponent from "./components/statusbar";
