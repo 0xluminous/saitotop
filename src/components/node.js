@@ -7,9 +7,9 @@ export default class NodeComponent {
             top: "0%",
             height: "20%",
             align: "right",
-            left: "80%",
-            width: "20%",
-            padding: { top: 0, left: 1, right: 1, bottom: 0 },
+            left: "65%",
+            width: "35%",
+            padding: { top: 0, left: 1, right: 0, bottom: 0 },
             tags: true,
         });
     }

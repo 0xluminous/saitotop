@@ -6,8 +6,8 @@ export default class NetworkComponent {
     constructor() {
         this.component = blessed.box({
             top: "0%",
-            height: "20%",
-            width: "80%",
+            height: "15%",
+            width: "65%",
             padding: { top: 0, left: 1, right: 1, bottom: 0 },
 
             tags: true,
@@ -38,10 +38,9 @@ export default class NetworkComponent {
 
         if (event = stats["mining::golden_tickets"]) {
             const stat = event["stats"]["current target"];
-            const value = truncateHash(stat.value, 4);
             const last_value = stat.last_value ? `${truncateHash(stat.last_value, 4)} ` : "";
             const color = stringToColor(stat.value);
-            content += `{white-fg}{bold}TARGET:  {${color}-bg}{black-fg}  {/black-fg}{/${color}-bg} ${value}{/white-fg}{/bold} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
+            content += `{white-fg}{bold}TARGET:  {${color}-bg}{black-fg}  {/black-fg}{/${color}-bg} ${stat.value}{/white-fg}{/bold} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
         }
 
         if (event = stats["mining::golden_tickets"]) {
@@ -53,8 +52,15 @@ export default class NetworkComponent {
         if (event = stats["mempool::state"]) {
             const transactions = event["stats"]["transactions"]["value"];
             const blocks = event["stats"]["blocks_queue"]["value"];
-            content += `{white-fg}{bold}MEMPOOL: tx=${transactions} blk=${blocks}{/bold}{/white-fg}`;
+            content += `{white-fg}{bold}MEMPOOL: tx=${transactions} blk=${blocks}{/bold}{/white-fg}\n`;
         }
+
+        if (event = stats["wallet::state"]) {
+            const stat = event["stats"]["current_balance"];
+            const last_value = stat.last_value ? `${stat.last_value} ` : "";
+            content += `{white-fg}{bold}WALLET:  ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}`;
+        }
+
 
         this.component.setContent(content);
     }
