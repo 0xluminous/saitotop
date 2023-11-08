@@ -17,6 +17,25 @@ export default function SaitoTop(dir, callback) {
         active: false,
     };
 
+    function updateStat(stat) {
+        const event = stat.event;
+        if (saito.stats[event]) {
+            const old = saito.stats[event];
+            for (const key in stat.stats) {
+                if (!old.stats[key] || old.stats[key].value !== stat.stats[key].value) {
+                    let last_value = null;
+                    if (old.stats[key]) {
+                        last_value = saito.stats[event].stats[key].value;
+                    }
+                    saito.stats[event].stats[key] = stat.stats[key];
+                    saito.stats[event].stats[key].last_value = last_value;
+                }
+            }
+        } else {
+            saito.stats[event] = stat;
+        }
+    }
+
     saito.config_file = path.join(saito.config_dir, "config.json");
     saito.stats_file = path.join(saito.data_dir, "saito.stats");
 
@@ -33,7 +52,9 @@ export default function SaitoTop(dir, callback) {
         saito.active = true;
 
         const stat = Parser.parse(line);
-        saito.stats[stat.event] = stat;
+
+        updateStat(stat);
+
         callback(saito);
     });
 }

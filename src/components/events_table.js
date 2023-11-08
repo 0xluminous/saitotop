@@ -21,7 +21,7 @@ export default class EventsTableComponent {
         events.sort();
 
         for (const event of events) {
-            rows.push([event, JSON.stringify(data[event].params).substring(0, 50), timeago(data[event].date)]);
+            rows.push([event, JSON.stringify(data[event].stats).substring(0, 50), "0s"]);
         }
 
         if (rows.length > 0) {

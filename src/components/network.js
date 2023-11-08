@@ -1,4 +1,5 @@
 const blessed = require("blessed");
+const timeago = require("../timeago").default;
 
 export default class NetworkComponent {
 
@@ -25,7 +26,8 @@ export default class NetworkComponent {
 
         let content = "";
         if (data["stats"]["blockchain::state"]) {
-            content += `{bold}HEIGHT:  ${data["stats"]["blockchain::state"]["params"]["block_count"]}{/bold}`;
+            content += `{white-fg}{bold}HEIGHT:  ${data["stats"]["blockchain::state"]["stats"]["block_count"]["value"]}{/bold}{/white-fg}`;
+            content += ` {gray-fg}${data["stats"]["blockchain::state"]["stats"]["block_count"]["last_value"]} ${timeago(data["stats"]["blockchain::state"]["stats"]["block_count"]["date"])} ago{/gray-fg}`;
         }
 
         /*

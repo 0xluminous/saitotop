@@ -1,6 +1,6 @@
 export default class Parser {
     static parse(line) {
-        const parsed = { params: {} };
+        const parsed = { stats: {} };
 
         // saito bugs
         line = line.replace("--- stats ------ ", "");
@@ -12,12 +12,14 @@ export default class Parser {
         const params = rest.split(/\s*\,\s*/);
         for (const param of params) {
             const [key, value] = param.split(/\s*\:\s*/);
+
+            parsed["stats"][key] = { date: new Date() };
+
             try {
-                parsed.params[key] = JSON.parse(value);
+                parsed["stats"][key]["value"] = JSON.parse(value);
             } catch (e) {
-                parsed.params[key] = value;
+                parsed["stats"][key]["value"] = value;
             }
-            parsed.date = new Date();
         }
 
         return parsed;
