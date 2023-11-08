@@ -1,6 +1,6 @@
 const blessed = require("blessed");
 
-export default class NodeComponent {
+export default class ConfigComponent {
 
     constructor() {
         this.component = blessed.box({

@@ -3,10 +3,13 @@ const blessed = require("blessed");
 import LoadingComponent from "./components/loading";
 import EventsTableComponent from "./components/events_table";
 import StatusbarComponent from "./components/statusbar";
-import NetworkComponent from "./components/network";
-import NodeComponent from "./components/node";
 import DividerComponent from "./components/divider";
 import DebugComponent from "./components/debug";
+import SummaryComponent from "./components/summary";
+import ConfigComponent from "./components/config";
+import NetworkingComponent from "./components/networking";
+import RoutingComponent from "./components/routing";
+import ConsensusComponent from "./components/consensus";
 
 export default class UI {
     constructor() {
@@ -25,10 +28,13 @@ export default class UI {
         const debug = new DebugComponent();
         this.components = [
             new LoadingComponent(),
-            new NetworkComponent(),
-            new NodeComponent(),
+            new SummaryComponent(),
+            new ConfigComponent(),
             new DividerComponent(),
-            new EventsTableComponent(),
+            new NetworkingComponent(),
+            new RoutingComponent(),
+            new ConsensusComponent(),
+            // new EventsTableComponent(),
             new StatusbarComponent(),
             debug,
         ];

@@ -1,7 +1,7 @@
 const blessed = require("blessed");
 const { timeago, truncateHash, stringToColor } = require("../utils");
 
-export default class NetworkComponent {
+export default class SummaryComponent {
 
     constructor() {
         this.component = blessed.box({
