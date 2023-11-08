@@ -15,7 +15,7 @@ export default class NodeComponent {
     }
 
     render(data) {
-        if (!data.active) {
+        if (!data.active || !data.config) {
             this.component.hide();
             return;
         }
@@ -24,8 +24,13 @@ export default class NodeComponent {
 
         let content = "";
 
-        content += `{bold}127.0.0.1:12101 (me)  {/bold}`;
-        content += `\nsaito.io:443 (full)`;
+        const nodeaddr = `${data.config.server.protocol}://${data.config.server.host}:${data.config.server.port}`;
+        content += `{bold}{white-fg}${nodeaddr}{/white-fg} (me)  {/bold}`;
+
+        for (const peer of data.config.peers) {
+            const peeraddr = `${peer.protocol}://${peer.host}:${peer.port}`;
+            content += `\n{white-fg}${peeraddr}{/white-fg} (${peer.synctype})`;
+        }
 
         this.component.setContent(content);
     }
