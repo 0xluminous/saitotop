@@ -1,18 +1,18 @@
 const blessed = require("blessed");
 const { timeago } = require("../utils");
 
-export default class NetworkingComponent {
+export default class MiningComponent {
 
     constructor() {
         this.component = blessed.box({
             align: 'left',
-            top: "200",
+            top: "45%",
             tags: true,
             left: '0%',
             scrollable: true,
             mouse: true,
             border: "line",
-            label: "Networking",
+            label: "Mining",
             width: '25%',
             height: '25%',
             tags: true
@@ -32,22 +32,19 @@ export default class NetworkingComponent {
         let content = "";
         let event = null;
 
-
-        if (event = stats["network::incoming_msgs"]) {
-            const stat = event["stats"]["total"];
+        // Mining
+        //  mining::golden_tickets             {"total":"10","current difficulty":"21"}
+        //  blockchain::state                  {"utxo_size":"63","block_count":"43","longest_chain_len":"43"}                                                                                      
+        if (event = stats["mining::golden_tickets"]) {
+            const stat = event["stats"]["current difficulty"];
             const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}IN:    ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
+            content += `{white-fg}{bold}DIFFICULTY:     ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
         }
 
-        if (event = stats["network::outgoing_msgs"]) {
+        if (event = stats["mining::golden_tickets"]) {
             const stat = event["stats"]["total"];
             const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}OUT:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["network::queue"]) {
-            const stat = event["stats"]["capacity"];
-            content += `{white-fg}{bold}QUEUE: ${stat.value}{/bold}{/white-fg} {gray-fg}${timeago(stat.date)} ago{/gray-fg}\n`;
+            content += `{white-fg}{bold}GOLDEN TICKETS: ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
         }
 
         this.component.setContent(content);

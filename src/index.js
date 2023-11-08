@@ -21,5 +21,5 @@ process.on("unhandledRejection", (err) => {
 
 main();
 
-// todo: create another view that shows raw debug JSON.
-// todo: by default "productize" all info...only show what is useful, put rest in raw debug view
+// could use refactor
+// sparklines for current rate?

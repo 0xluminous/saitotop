@@ -5,6 +5,7 @@ export default class Parser {
         // saito bugs
         line = line.replace("--- stats ------ ", "");
         line = line.replace("mempool:state", "mempool::state");
+        line = line.replace("routing:sync_state", "routing::sync_state");
 
         const [event, rest] = line.split(/\s+-\s+/);
         parsed.event = event;

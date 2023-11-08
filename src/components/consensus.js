@@ -8,7 +8,7 @@ export default class ConsensusComponent {
             align: 'left',
             top: "200",
             tags: true,
-            left: '50%',
+            left: '75%',
             scrollable: true,
             mouse: true,
             border: "line",

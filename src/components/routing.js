@@ -51,10 +51,13 @@ export default class RoutingComponent {
             content += `{white-fg}{bold}TXS:    ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
         }
 
-        if (event = stats["network::sync_state"]) {
+        // routing:sync_state                 { "block_ceiling": "73" }
+        if (event = stats["routing::sync_state"]) {
             const stat = event["stats"]["block_ceiling"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}CEIL:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
+            if (stat) {
+                const last_value = stat.last_value ? `${stat.last_value} ` : "";
+                content += `{white-fg}{bold}CEIL:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
+            }
         }
 
         this.component.setContent(content);

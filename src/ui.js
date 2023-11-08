@@ -10,6 +10,10 @@ import ConfigComponent from "./components/config";
 import NetworkingComponent from "./components/networking";
 import RoutingComponent from "./components/routing";
 import ConsensusComponent from "./components/consensus";
+import VerificationComponent from "./components/verification";
+import MiningComponent from "./components/mining";
+import WalletComponent from "./components/wallet";
+import BlockchainComponent from "./components/blockchain";
 
 export default class UI {
     constructor() {
@@ -33,8 +37,11 @@ export default class UI {
             new DividerComponent(),
             new NetworkingComponent(),
             new RoutingComponent(),
+            new VerificationComponent(),
             new ConsensusComponent(),
-            // new EventsTableComponent(),
+            new MiningComponent(),
+            new BlockchainComponent(),
+            new WalletComponent(),
             new StatusbarComponent(),
             debug,
         ];
