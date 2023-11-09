@@ -1,8 +1,11 @@
 const blessed = require("blessed");
+import Component from "./component";
 
-export default class ConfigComponent {
+export default class ConfigComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             top: "0%",
             height: "190",

@@ -1,5 +1,4 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
 import Component from "./component";
 
 export default class ConsensusComponent extends Component {

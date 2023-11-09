@@ -1,8 +1,11 @@
 const blessed = require("blessed");
+import Component from "./component";
 
-export default class DebugComponent {
+export default class DebugComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             width: "50%",
             height: "70%",
@@ -51,22 +54,4 @@ export default class DebugComponent {
         }
         this.component.setContent(content);
     }
-
-    /*
-    render(data) {
-        if (data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
-
-        if (++this.i > 3) {
-            this.i = 0;
-        }
-
-        const dots = ".".repeat(this.i);
-        const filler = " ".repeat(3 - this.i);
-    }
-    */
 }

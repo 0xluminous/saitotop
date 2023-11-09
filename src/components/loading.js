@@ -1,8 +1,11 @@
 const blessed = require("blessed");
+import Component from "./component";
 
-export default class LoadingComponent {
+export default class LoadingComponent extends Component {
 
     constructor() {
+        super();
+
         this.content = "{bold}SAITO TOP{/bold}\n\n   Waiting for data";
 
         this.component = blessed.box({

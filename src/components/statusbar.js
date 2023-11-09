@@ -1,8 +1,11 @@
 const blessed = require("blessed");
+import Component from "./component";
 
-export default class StatusbarComponent {
+export default class StatusbarComponent extends Component {
 
     constructor() {
+        super();
+
         this.left = blessed.box({
             width: "60%",
             padding: { top: 0, left: 1, right: 1, bottom: 0 },
