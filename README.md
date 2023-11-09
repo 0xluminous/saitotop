@@ -2,7 +2,7 @@
 
 > CLI Dashboard for Saito Nodes
 
-<script async id="asciicast-P59trvkORuqb0uygs6sTLOgS1" src="https://asciinema.org/a/P59trvkORuqb0uygs6sTLOgS1.js"></script>
+![Saito Top Demo](asciicast.gif)
 
 Works by tailing your `saito.stats` file and pulling other useful info from your
 config.
