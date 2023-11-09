@@ -4,10 +4,11 @@
     "description": "Dashboard for Saito Node",
     "main": "node -r esm src/index.js",
     "scripts": {
-        "start": "node -r esm src/index.js"
+        "start": "node -r esm src/index.js",
+        "build": "rollup -c rollup.config.js"
     },
     "bin": {
-        "saitotop": "src/index.js"
+        "saitotop": "dist/index.js"
     },
     "keywords": [
         "saito",
@@ -15,12 +16,15 @@
     ],
     "author": "0xluminous",
     "license": "MIT",
-    "devDependencies": {},
+    "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "rollup": "^4.3.0"
+    },
     "dependencies": {
-        "esm": "^3.2.25",
         "blessed": "^0.1.81",
         "debug": "^4.3.4",
         "dotenv": "^16.3.1",
+        "esm": "^3.2.25",
         "javascript-time-ago": "^2.5.9",
         "tail": "^2.2.6"
     }

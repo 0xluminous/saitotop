@@ -1,5 +1,5 @@
 const blessed = require("blessed");
-const { timeago, truncateHash, stringToColor } = require("../utils");
+import { timeago, truncateHash, stringToColor } from "../utils"
 import Component from "./component";
 
 export default class SummaryComponent extends Component {

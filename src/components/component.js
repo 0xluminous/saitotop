@@ -1,4 +1,4 @@
-const { timeago } = require("../utils");
+import { timeago } from "../utils"
 
 export default class Component {
     constructor() {
