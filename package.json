@@ -2,9 +2,12 @@
     "name": "saitotop",
     "version": "0.0.1",
     "description": "Dashboard for Saito Node",
-    "main": "src/index.js",
+    "main": "node -r esm src/index.js",
     "scripts": {
-        "start": "node src/index.js"
+        "start": "node -r esm src/index.js"
+    },
+    "bin": {
+        "saitotop": "src/index.js"
     },
     "keywords": [
         "saito",
@@ -12,10 +15,9 @@
     ],
     "author": "0xluminous",
     "license": "MIT",
-    "devDependencies": {
-        "esm": "^3.2.25"
-    },
+    "devDependencies": {},
     "dependencies": {
+        "esm": "^3.2.25",
         "blessed": "^0.1.81",
         "debug": "^4.3.4",
         "dotenv": "^16.3.1",
