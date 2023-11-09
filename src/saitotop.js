@@ -1,6 +1,5 @@
 const path = require("path");
 const fs = require("fs");
-const { getRandomColor } = require("./utils");
 
 const Tail = require("tail").Tail;
 
@@ -18,7 +17,7 @@ export default function SaitoTop(dir, callback) {
         active: false,
     };
 
-    function updateStat(stat) {
+    function updateStat(stat) { // ಠ_ಠ
         const event = stat.event;
         if (saito.stats[event]) {
             const old = saito.stats[event];
@@ -51,11 +50,7 @@ export default function SaitoTop(dir, callback) {
     const tail = new Tail(saito.stats_file, { fromBeginning: false });
     tail.on("line", (line) => {
         saito.active = true;
-
-        const stat = Parser.parse(line);
-
-        updateStat(stat);
-
+        updateStat(Parser.parse(line));
         callback(saito);
     });
 }

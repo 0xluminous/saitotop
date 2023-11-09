@@ -1,9 +1,11 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
+import Component from "./component";
 
-export default class BlockchainComponent {
+export default class BlockchainComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             align: 'left',
             top: "45%",
@@ -27,24 +29,9 @@ export default class BlockchainComponent {
 
         this.component.show();
 
-        const stats = data["stats"];
-
         let content = "";
-        let event = null;
-
-        //  blockchain::state                  {"utxo_size":"63","block_count":"43","longest_chain_len":"43"}                                                                                      
-        if (event = stats["blockchain::state"]) {
-            const stat = event["stats"]["utxo_size"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}UTXO SIZE:     ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["blockchain::state"]) {
-            const stat = event["stats"]["longest_chain_len"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}LONGEST CHAIN: ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
+        content += this.renderStat(data["stats"], "UTXO SIZE", "blockchain::state", "utxo_size", 13);
+        content += this.renderStat(data["stats"], "LONGEST CHAIN", "blockchain::state", "longest_chain_len", 13);
         this.component.setContent(content);
     }
 }

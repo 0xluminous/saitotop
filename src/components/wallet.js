@@ -1,9 +1,11 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
+import Component from "./component";
 
-export default class WalletComponent {
+export default class WalletComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             align: 'left',
             top: "45%",
@@ -27,25 +29,9 @@ export default class WalletComponent {
 
         this.component.show();
 
-        const stats = data["stats"];
-
         let content = "";
-        let event = null;
-
-        //  wallet::state                      {"total_slips":"0","unspent_slips":"0","current_balance":"0"}
-
-        if (event = stats["wallet::state"]) {
-            const stat = event["stats"]["total_slips"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}SLIPS:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["wallet::state"]) {
-            const stat = event["stats"]["unspent_slips"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}UNSPENT: ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
+        content += this.renderStat(data["stats"], "SLIPS", "wallet::state", "total_slips", 7);
+        content += this.renderStat(data["stats"], "UNSPENT", "wallet::state", "unspent_slips", 7);
         this.component.setContent(content);
     }
 }

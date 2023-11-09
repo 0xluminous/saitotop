@@ -16,12 +16,6 @@ export function truncateHash(hash, length = 4) {
     return hash.substr(0, length) + '…' + hash.substr(-length);
 }
 
-export function getRandomColor() {
-    const colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-}
-
 export function stringToColor(hashString) {
     let hash = 0;
     for (let i = 0; i < hashString.length; i++) {

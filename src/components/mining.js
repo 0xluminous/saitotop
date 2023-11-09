@@ -1,9 +1,11 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
+import Component from "./component";
 
-export default class MiningComponent {
+export default class MiningComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             align: 'left',
             top: "45%",
@@ -27,26 +29,9 @@ export default class MiningComponent {
 
         this.component.show();
 
-        const stats = data["stats"];
-
         let content = "";
-        let event = null;
-
-        // Mining
-        //  mining::golden_tickets             {"total":"10","current difficulty":"21"}
-        //  blockchain::state                  {"utxo_size":"63","block_count":"43","longest_chain_len":"43"}                                                                                      
-        if (event = stats["mining::golden_tickets"]) {
-            const stat = event["stats"]["current difficulty"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}DIFFICULTY:     ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["mining::golden_tickets"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}GOLDEN TICKETS: ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
+        content += this.renderStat(data["stats"], "DIFFICULTY", "mining::golden_tickets", "current difficulty", 14);
+        content += this.renderStat(data["stats"], "GOLDEN TICKETS", "mining::golden_tickets", "total", 14);
         this.component.setContent(content);
     }
 }

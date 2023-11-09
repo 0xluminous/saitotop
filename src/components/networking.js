@@ -1,9 +1,10 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
+import Component from "./component";
 
-export default class NetworkingComponent {
+export default class NetworkingComponent extends Component {
 
     constructor() {
+        super();
         this.component = blessed.box({
             align: 'left',
             top: "200",
@@ -27,29 +28,10 @@ export default class NetworkingComponent {
 
         this.component.show();
 
-        const stats = data["stats"];
-
         let content = "";
-        let event = null;
-
-
-        if (event = stats["network::incoming_msgs"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}IN:    ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["network::outgoing_msgs"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}OUT:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["network::queue"]) {
-            const stat = event["stats"]["capacity"];
-            content += `{white-fg}{bold}QUEUE: ${stat.value}{/bold}{/white-fg} {gray-fg}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
+        content += this.renderStat(data["stats"], "IN", "network::incoming_msgs", "total", 5);
+        content += this.renderStat(data["stats"], "OUT", "network::outgoing_msgs", "total", 5);
+        content += this.renderStat(data["stats"], "QUEUE", "network::queue", "capacity", 5, false);
         this.component.setContent(content);
     }
 }

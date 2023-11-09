@@ -22,4 +22,4 @@ process.on("unhandledRejection", (err) => {
 main();
 
 // could use refactor
-// sparklines for current rate?
+// TODO: sparklines for current rate?

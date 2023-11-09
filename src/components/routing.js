@@ -1,9 +1,10 @@
 const blessed = require("blessed");
-const { timeago } = require("../utils");
+import Component from "./component";
 
-export default class RoutingComponent {
+export default class RoutingComponent extends Component {
 
     constructor() {
+        super();
         this.component = blessed.box({
             align: 'left',
             top: "200",
@@ -27,39 +28,11 @@ export default class RoutingComponent {
 
         this.component.show();
 
-        const stats = data["stats"];
-
         let content = "";
-        let event = null;
-
-
-        if (event = stats["routing::incoming_msgs"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}MSGS:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["routing::received_blocks"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}BLOCKS: ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        if (event = stats["routing::received_txs"]) {
-            const stat = event["stats"]["total"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}TXS:    ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
-
-        // routing:sync_state                 { "block_ceiling": "73" }
-        if (event = stats["routing::sync_state"]) {
-            const stat = event["stats"]["block_ceiling"];
-            if (stat) {
-                const last_value = stat.last_value ? `${stat.last_value} ` : "";
-                content += `{white-fg}{bold}CEIL:   ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-            }
-        }
-
+        content += this.renderStat(data["stats"], "MSGS", "routing::incoming_msgs", "total", 6);
+        content += this.renderStat(data["stats"], "BLOCKS", "routing::received_blocks", "total", 6);
+        content += this.renderStat(data["stats"], "TXS", "routing::received_txs", "total", 6);
+        content += this.renderStat(data["stats"], "CEIL", "routing::sync_state", "block_ceiling", 6);
         this.component.setContent(content);
     }
 }

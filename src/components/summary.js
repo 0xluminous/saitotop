@@ -1,20 +1,22 @@
 const blessed = require("blessed");
 const { timeago, truncateHash, stringToColor } = require("../utils");
+import Component from "./component";
 
-export default class SummaryComponent {
+export default class SummaryComponent extends Component {
 
     constructor() {
+        super();
+
         this.component = blessed.box({
             top: "0",
             height: "190",
             width: "75%",
             padding: { top: 1, left: 1, right: 1, bottom: 0 },
-
             tags: true,
-            content: "Initializing...",
         });
 
         this.i = 0;
+
     }
 
     render(data) {
@@ -30,12 +32,7 @@ export default class SummaryComponent {
         let content = "";
         let event = null;
 
-
-        if (event = stats["blockchain::state"]) {
-            const stat = event["stats"]["block_count"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}HEIGHT:  ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}\n`;
-        }
+        content += this.renderStat(stats, "HEIGHT", "blockchain::state", "block_count");
 
         if (event = stats["mining::golden_tickets"]) {
             const stat = event["stats"]["current target"];
@@ -56,12 +53,7 @@ export default class SummaryComponent {
             content += `{white-fg}{bold}MINING:  ${value}{/bold}{/white-fg}\n`;
         }
 
-        if (event = stats["wallet::state"]) {
-            const stat = event["stats"]["current_balance"];
-            const last_value = stat.last_value ? `${stat.last_value} ` : "";
-            content += `{white-fg}{bold}WALLET:  ${stat.value}{/bold}{/white-fg} {gray-fg}${last_value}${timeago(stat.date)} ago{/gray-fg}`;
-        }
-
+        content += this.renderStat(stats, "WALLET", "wallet::state", "current_balance");
 
         this.component.setContent(content);
     }

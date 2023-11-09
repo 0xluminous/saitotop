@@ -1,4 +1,3 @@
-// const log = require("debug")("saitotop:ui");
 const blessed = require("blessed");
 import LoadingComponent from "./components/loading";
 import StatusbarComponent from "./components/statusbar";
