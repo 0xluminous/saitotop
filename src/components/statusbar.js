@@ -34,13 +34,4 @@ export default class StatusbarComponent extends Component {
         this.component.append(this.left);
         this.component.append(this.right);
     }
-
-    render(data) {
-        if (!data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
-    }
 }

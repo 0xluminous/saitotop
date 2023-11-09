@@ -14,12 +14,6 @@ process.on("uncaughtException", (err) => {
     process.exit(-1);
 });
 
-process.on("unhandledRejection", (err) => {
-    console.log(err);
-    process.exit(-1);
-});
-
 main();
 
-// could use refactor
 // TODO: sparklines for current rate?

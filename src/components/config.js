@@ -18,12 +18,7 @@ export default class ConfigComponent extends Component {
     }
 
     render(data) {
-        if (!data.active || !data.config) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         let content = "";
 

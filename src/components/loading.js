@@ -6,6 +6,7 @@ export default class LoadingComponent extends Component {
     constructor() {
         super();
 
+        this.show_active = false;
         this.content = "{bold}SAITO TOP{/bold}\n\n   Waiting for data";
 
         this.component = blessed.box({
@@ -22,12 +23,7 @@ export default class LoadingComponent extends Component {
     }
 
     render(data) {
-        if (data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         if (++this.i > 3) {
             this.i = 0;

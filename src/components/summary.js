@@ -20,12 +20,7 @@ export default class SummaryComponent extends Component {
     }
 
     render(data) {
-        if (!data.active || !data.stats) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         const stats = data["stats"];
 

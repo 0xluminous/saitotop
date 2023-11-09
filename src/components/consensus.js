@@ -22,12 +22,7 @@ export default class ConsensusComponent extends Component {
     }
 
     render(data) {
-        if (!data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         let content = "";
         content += this.renderStat(data["stats"], "CREATED", "consensus::blocks_created", "total", 7);

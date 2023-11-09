@@ -21,12 +21,7 @@ export default class NetworkingComponent extends Component {
     }
 
     render(data) {
-        if (!data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         let content = "";
         content += this.renderStat(data["stats"], "IN", "network::incoming_msgs", "total", 5);

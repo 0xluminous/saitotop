@@ -22,9 +22,9 @@ export default class UI {
 
     setup() {
         this.screen = blessed.screen({
-            log: "debug",
-            debug: true,
-            dump: true,
+            // log: "debug",
+            // debug: true,
+            // dump: true,
         });
 
         const debug = new DebugComponent();

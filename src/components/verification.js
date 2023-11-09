@@ -22,17 +22,11 @@ export default class VerificationComponent extends Component {
     }
 
     render(data) {
-        if (!data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         const stats = data["stats"];
 
         let content = "";
-        let event = null;
 
         let invalid_txs = Object.keys(stats).map((stat) => {
             if (stat.startsWith("verification_") && stat.endsWith("::invalid_txs")) {

@@ -22,12 +22,7 @@ export default class BlockchainComponent extends Component {
     }
 
     render(data) {
-        if (!data.active) {
-            this.component.hide();
-            return;
-        }
-
-        this.component.show();
+        if (!super.render(data)) return;
 
         let content = "";
         content += this.renderStat(data["stats"], "UTXO SIZE", "blockchain::state", "utxo_size", 13);
