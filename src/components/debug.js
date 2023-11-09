@@ -22,8 +22,6 @@ export default class DebugComponent extends Component {
             tags: true,
             padding: 1,
         });
-
-        this.i = 0;
     }
 
     toggle() {

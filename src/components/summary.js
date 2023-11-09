@@ -14,9 +14,6 @@ export default class SummaryComponent extends Component {
             padding: { top: 1, left: 1, right: 1, bottom: 0 },
             tags: true,
         });
-
-        this.i = 0;
-
     }
 
     render(data) {
