@@ -2,7 +2,7 @@
 
 > CLI Dashboard for Saito Nodes
 
-![Saito Top Demo](asciicast.gif)
+![Saito Top Demo](https://github.com/0xluminous/saitotop/blob/master/asciicast.gif?raw=true)
 
 Works by tailing your `saito.stats` file and pulling other useful info from your
 config.
