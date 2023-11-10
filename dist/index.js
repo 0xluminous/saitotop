@@ -15,9 +15,11 @@ class Parser {
 
         const params = rest.split(/\s*\,\s*/);
         for (const param of params) {
-            const [key, value] = param.split(/\s*\:\s*/);
+            let [key, value] = param.split(/\s*\:\s*/);
 
             parsed["stats"][key] = { date: new Date() };
+
+            value = value.replace(" full_block_count", ""); // hack
 
             try {
                 parsed["stats"][key]["value"] = JSON.parse(value);
@@ -3553,7 +3555,7 @@ class SummaryComponent extends Component {
         let content = "";
         let event = null;
 
-        content += this.renderStat(stats, "HEIGHT", "blockchain::state", "block_count");
+        content += this.renderStat(stats, "HEIGHT", "blockchain::state", "longest_chain_len");
 
         if (event = stats["mining::golden_tickets"]) {
             const stat = event["stats"]["current target"];
@@ -3882,7 +3884,7 @@ class BlockchainComponent extends Component {
 
         let content = "";
         content += this.renderStat(data["stats"], "UTXO SIZE", "blockchain::state", "utxo_size", 13);
-        content += this.renderStat(data["stats"], "LONGEST CHAIN", "blockchain::state", "longest_chain_len", 13);
+        content += this.renderStat(data["stats"], "BLOCK COUNT", "blockchain::state", "block_count", 13);
         this.component.setContent(content);
     }
 }
