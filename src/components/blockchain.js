@@ -26,7 +26,7 @@ export default class BlockchainComponent extends Component {
 
         let content = "";
         content += this.renderStat(data["stats"], "UTXO SIZE", "blockchain::state", "utxo_size", 13);
-        content += this.renderStat(data["stats"], "LONGEST CHAIN", "blockchain::state", "longest_chain_len", 13);
+        content += this.renderStat(data["stats"], "BLOCK COUNT", "blockchain::state", "block_count", 13);
         this.component.setContent(content);
     }
 }

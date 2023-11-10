@@ -24,7 +24,7 @@ export default class SummaryComponent extends Component {
         let content = "";
         let event = null;
 
-        content += this.renderStat(stats, "HEIGHT", "blockchain::state", "block_count");
+        content += this.renderStat(stats, "HEIGHT", "blockchain::state", "longest_chain_len");
 
         if (event = stats["mining::golden_tickets"]) {
             const stat = event["stats"]["current target"];

@@ -12,9 +12,11 @@ export default class Parser {
 
         const params = rest.split(/\s*\,\s*/);
         for (const param of params) {
-            const [key, value] = param.split(/\s*\:\s*/);
+            let [key, value] = param.split(/\s*\:\s*/);
 
             parsed["stats"][key] = { date: new Date() };
+
+            value = value.replace(" full_block_count", ""); // hack
 
             try {
                 parsed["stats"][key]["value"] = JSON.parse(value);
